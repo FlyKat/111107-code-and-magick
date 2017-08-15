@@ -6,7 +6,7 @@
   "author": "Екатерина Давлятчина",
   "repository": {
     "type": "git",
-    "url": "git@github.com:htmlacademy-javascript/111107-code-and-magick.git"
+    "url": "git+ssh://git@github.com/htmlacademy-javascript/111107-code-and-magick.git"
   },
   "bugs": {
     "url": "https://github.com/htmlacademy-javascript/111107-code-and-magick/issues"
@@ -23,5 +23,7 @@
   },
   "engines": {
     "node": "^6.10"
-  }
+  },
+  "main": "index.js",
+  "keywords": []
 }
