@@ -42,8 +42,11 @@ window.renderStatistics = function (ctx, names, times) {
     var timesLength = times.length;
 
     for (var i = 0; i < timesLength; i++) {
-
-      names[i] === 'Вы' ? ctx.fillStyle = COLOR_RED : ctx.fillStyle = getRandomColorBlue();
+      if (names[i] === 'Вы') {
+        ctx.fillStyle = COLOR_RED;
+      } else {
+        ctx.fillStyle = getRandomColorBlue();
+      }
 
       ctx.fillRect(initialX + indent * i, initialY, barWidth, -step * times[i]);
       ctx.fillStyle = COLOR_BLACK;
