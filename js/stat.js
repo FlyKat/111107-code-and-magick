@@ -28,7 +28,7 @@ function getRandomNumber(min, max) {
 }
 
 function getRandomColorBlue() {
-  return 'rgba(0, 0, 255, ' + getRandomNumber(0, 1).toFixed(1) + ')';
+  return 'rgba(0, 0, 255, ' + (getRandomNumber(0, 1) + 0.1).toFixed(1) +')';
 }
 
 function drawHistogram(ctx, names, times) {
