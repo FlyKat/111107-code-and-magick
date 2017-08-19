@@ -1,8 +1,8 @@
 'use strict';
 
 var PLAYER_COLOR = 'rgba(255, 0, 0, 1)';
-var CLOUD_COLOR = 'rgb(255, 255, 255)';
-var MESSAGE_COLOR = 'rgb(0, 0, 0)';
+var COLOR_WHITE = 'rgb(255, 255, 255)';
+var COLOR_BLACK = 'rgb(0, 0, 0)';
 var PLAYER_NAME = 'Вы';
 
 
@@ -30,7 +30,7 @@ function getRandomNumber(min, max) {
 }
 
 function getRandomColorBlue() {
-  return 'rgba(0, 0, 255, ' + (getRandomNumber(0, 1) + 0.1).toFixed(1) +')';
+  return 'rgba(0, 0, 255, ' + (getRandomNumber(0, 1) + 0.1).toFixed(1) + ')';
 }
 
 function drawHistogram(ctx, names, times) {
@@ -59,9 +59,9 @@ function drawHistogram(ctx, names, times) {
 window.renderStatistics = function (ctx, names, times) {
 
   drawCloud(ctx, 110, 20, 420, 270, 'rgba(0, 0, 0, 0.7)');
-  drawCloud(ctx, 100, 10, 420, 270, CLOUD_COLOR);
-  typeMessage(ctx, '16px PT Mono', MESSAGE_COLOR, 'Ура, вы победили!', 120, 40);
-  typeMessage(ctx, '16px PT Mono', MESSAGE_COLOR, 'Список результатов:', 120, 60);
+  drawCloud(ctx, 100, 10, 420, 270, COLOR_WHITE);
+  typeMessage(ctx, '16px PT Mono', COLOR_BLACK, 'Ура, вы победили!', 120, 40);
+  typeMessage(ctx, '16px PT Mono', COLOR_BLACK, 'Список результатов:', 120, 60);
   drawHistogram(ctx, names, times);
 
 };
