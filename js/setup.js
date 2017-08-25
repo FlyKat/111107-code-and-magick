@@ -45,7 +45,10 @@ var FIREBALL_COLORS = [
   '#e6e848'
 ];
 
-
+var KEYCODS = {
+  esc: 27,
+  enter: 13
+};
 
 /**
  * Количество персонажей
@@ -53,21 +56,19 @@ var FIREBALL_COLORS = [
  */
 var WIZARDS_COUNT = 4;
 
-/**
- * Находит и показывает панель настроек персонажа
- */
+
 var setup = document.querySelector('.setup');
-
-
-/**
- * Находит блок, в который будем вставлять похожих персонажей
- */
 var similarListElement = setup.querySelector('.setup-similar-list');
-
-/**
- * Находит шаблон
- */
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
+var setupOpen = document.querySelector('.setup-open');
+var setupClose = setup.querySelector('.setup-close');
+var setupSubmit = setup.querySelector('.setup-submit');
+var setupUserName = setup.querySelector('.setup-user-name');
+var wizardSetup = setup.querySelector('.setup-wizard');
+var wizardCoat = wizardSetup.querySelector('.wizard-coat');
+var wizardEyes = wizardSetup.querySelector('.wizard-eyes');
+var fireball = setup.querySelector('.setup-fireball-wrap');
+
 
 /**
  * Возвращает массив, перетасованный по алгоритму Фишера–Йейтса в варианте Дуршенфельда
@@ -152,26 +153,12 @@ function renderWizards() {
   return fragment;
 }
 
-var KEYCODS = {
-  esc : 27,
-  enter: 13
-}
-
-var setup = document.querySelector('.setup');
-var setupOpen = document.querySelector('.setup-open');
-var setupClose = setup.querySelector('.setup-close');
-var setupSubmit = setup.querySelector('.setup-submit');
-var setupUserName   = setup.querySelector('.setup-user-name');
-var wizardSetup = setup.querySelector('.setup-wizard');
-var wizardCoat = wizardSetup.querySelector('.wizard-coat');
-var wizardEyes = wizardSetup.querySelector('.wizard-eyes');
-var fireball = setup.querySelector('.setup-fireball-wrap');
 
 function popupEscPressHandler(evt) {
   if (evt.keyCode === KEYCODS.esc && evt.target !== setupUserName) {
     closePopup();
   }
-};
+}
 
 function openPopup() {
   setup.classList.remove('hidden');
@@ -183,47 +170,47 @@ function closePopup() {
   document.removeEventListener('keydown', popupEscPressHandler);
 }
 
-setupOpen.addEventListener('click', function() {
+setupOpen.addEventListener('click', function () {
   openPopup();
 });
 
-setupOpen.addEventListener('keydown', function(evt) {
+setupOpen.addEventListener('keydown', function (evt) {
   if (evt.keyCode === KEYCODS.enter) {
     openPopup();
   }
 });
 
 
-setupClose.addEventListener('click', function() {
+setupClose.addEventListener('click', function () {
   closePopup();
 });
 
-setupClose.addEventListener('keydown', function(evt) {
+setupClose.addEventListener('keydown', function (evt) {
   if (evt.keyCode === KEYCODS.enter) {
     closePopup();
   }
 });
 
-setupSubmit.addEventListener('click', function() {
+setupSubmit.addEventListener('click', function () {
   closePopup();
 });
 
-setupSubmit.addEventListener('keydown', function(evt) {
+setupSubmit.addEventListener('keydown', function (evt) {
   if (evt.keyCode === KEYCODS.enter) {
     closePopup();
   }
 });
 
 
-wizardCoat.addEventListener('click', function() {
+wizardCoat.addEventListener('click', function () {
   wizardCoat.style.fill = getRandomElement(COAT_COLORS);
 });
 
-wizardEyes.addEventListener('click', function() {
+wizardEyes.addEventListener('click', function () {
   wizardEyes.style.fill = getRandomElement(EYES_COLORS);
 });
 
-fireball.addEventListener('click', function() {
+fireball.addEventListener('click', function () {
   fireball.style.background = getRandomElement(FIREBALL_COLORS);
 });
 
