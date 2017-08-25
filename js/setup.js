@@ -37,6 +37,16 @@ var EYES_COLORS = [
   'green'
 ];
 
+var FIREBALL_COLORS = [
+  '#ee4830',
+  '#30a8ee',
+  '#5ce6c0',
+  '#e848d5',
+  '#e6e848'
+];
+
+
+
 /**
  * Количество персонажей
  * @type {Number}
@@ -46,13 +56,13 @@ var WIZARDS_COUNT = 4;
 /**
  * Находит и показывает панель настроек персонажа
  */
-var userDialog = document.querySelector('.setup');
-userDialog.classList.remove('hidden');
+var setup = document.querySelector('.setup');
+
 
 /**
  * Находит блок, в который будем вставлять похожих персонажей
  */
-var similarListElement = userDialog.querySelector('.setup-similar-list');
+var similarListElement = setup.querySelector('.setup-similar-list');
 
 /**
  * Находит шаблон
@@ -73,6 +83,18 @@ function shuffle(arr) {
   }
 
   return arr;
+}
+
+/**
+ * Возвращает случайный элемент массива
+ * @param  {[array]} arr
+ * @return {[type]}
+ */
+function getRandomElement(arr) {
+  var randomIndex = Math.floor(Math.random() * arr.length);
+  var element = arr[randomIndex];
+
+  return element;
 }
 
 /**
@@ -130,6 +152,82 @@ function renderWizards() {
   return fragment;
 }
 
+var KEYCODS = {
+  esc : 27,
+  enter: 13
+}
+
+var setup = document.querySelector('.setup');
+var setupOpen = document.querySelector('.setup-open');
+var setupClose = setup.querySelector('.setup-close');
+var setupSubmit = setup.querySelector('.setup-submit');
+var setupUserName   = setup.querySelector('.setup-user-name');
+var wizardSetup = setup.querySelector('.setup-wizard');
+var wizardCoat = wizardSetup.querySelector('.wizard-coat');
+var wizardEyes = wizardSetup.querySelector('.wizard-eyes');
+var fireball = setup.querySelector('.setup-fireball-wrap');
+
+function popupEscPressHandler(evt) {
+  if (evt.keyCode === KEYCODS.esc && evt.target !== setupUserName) {
+    closePopup();
+  }
+};
+
+function openPopup() {
+  setup.classList.remove('hidden');
+  document.addEventListener('keydown', popupEscPressHandler);
+}
+
+function closePopup() {
+  setup.classList.add('hidden');
+  document.removeEventListener('keydown', popupEscPressHandler);
+}
+
+setupOpen.addEventListener('click', function() {
+  openPopup();
+});
+
+setupOpen.addEventListener('keydown', function(evt) {
+  if (evt.keyCode === KEYCODS.enter) {
+    openPopup();
+  }
+});
+
+
+setupClose.addEventListener('click', function() {
+  closePopup();
+});
+
+setupClose.addEventListener('keydown', function(evt) {
+  if (evt.keyCode === KEYCODS.enter) {
+    closePopup();
+  }
+});
+
+setupSubmit.addEventListener('click', function() {
+  closePopup();
+});
+
+setupSubmit.addEventListener('keydown', function(evt) {
+  if (evt.keyCode === KEYCODS.enter) {
+    closePopup();
+  }
+});
+
+
+wizardCoat.addEventListener('click', function() {
+  wizardCoat.style.fill = getRandomElement(COAT_COLORS);
+});
+
+wizardEyes.addEventListener('click', function() {
+  wizardEyes.style.fill = getRandomElement(EYES_COLORS);
+});
+
+fireball.addEventListener('click', function() {
+  fireball.style.background = getRandomElement(FIREBALL_COLORS);
+});
+
+
 /**
  *Отрисовывает похожих персонажей во временном блоке DocumentFragment
  */
@@ -143,4 +241,4 @@ similarListElement.appendChild(renderWizards());
 /**
  * Показывает блок похожих персонажей
  */
-userDialog.querySelector('.setup-similar').classList.remove('hidden');
+setup.querySelector('.setup-similar').classList.remove('hidden');
