@@ -37,27 +37,38 @@ var EYES_COLORS = [
   'green'
 ];
 
+var FIREBALL_COLORS = [
+  '#ee4830',
+  '#30a8ee',
+  '#5ce6c0',
+  '#e848d5',
+  '#e6e848'
+];
+
+var KEYCODS = {
+  esc: 27,
+  enter: 13
+};
+
 /**
  * Количество персонажей
  * @type {Number}
  */
 var WIZARDS_COUNT = 4;
 
-/**
- * Находит и показывает панель настроек персонажа
- */
-var userDialog = document.querySelector('.setup');
-userDialog.classList.remove('hidden');
 
-/**
- * Находит блок, в который будем вставлять похожих персонажей
- */
-var similarListElement = userDialog.querySelector('.setup-similar-list');
-
-/**
- * Находит шаблон
- */
+var setup = document.querySelector('.setup');
+var similarListElement = setup.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
+var setupOpen = document.querySelector('.setup-open');
+var setupClose = setup.querySelector('.setup-close');
+var setupSubmit = setup.querySelector('.setup-submit');
+var setupUserName = setup.querySelector('.setup-user-name');
+var wizardSetup = setup.querySelector('.setup-wizard');
+var wizardCoat = wizardSetup.querySelector('.wizard-coat');
+var wizardEyes = wizardSetup.querySelector('.wizard-eyes');
+var fireball = setup.querySelector('.setup-fireball-wrap');
+
 
 /**
  * Возвращает массив, перетасованный по алгоритму Фишера–Йейтса в варианте Дуршенфельда
@@ -73,6 +84,18 @@ function shuffle(arr) {
   }
 
   return arr;
+}
+
+/**
+ * Возвращает случайный элемент массива
+ * @param  {[array]} arr
+ * @return {[type]}
+ */
+function getRandomElement(arr) {
+  var randomIndex = Math.floor(Math.random() * arr.length);
+  var element = arr[randomIndex];
+
+  return element;
 }
 
 /**
@@ -130,6 +153,79 @@ function renderWizards() {
   return fragment;
 }
 
+
+function popupEscPressHandler(evt) {
+  if (evt.keyCode === KEYCODS.esc && evt.target !== setupUserName) {
+    closePopup();
+  }
+}
+
+function openPopup() {
+  setup.classList.remove('hidden');
+  document.addEventListener('keydown', popupEscPressHandler);
+}
+
+function closePopup() {
+  setup.classList.add('hidden');
+  document.removeEventListener('keydown', popupEscPressHandler);
+}
+
+setupOpen.addEventListener('click', function () {
+  openPopup();
+});
+
+setupOpen.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === KEYCODS.enter) {
+    openPopup();
+  }
+});
+
+
+setupClose.addEventListener('click', function () {
+  closePopup();
+});
+
+setupClose.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === KEYCODS.enter) {
+    closePopup();
+  }
+});
+
+setupSubmit.addEventListener('click', function () {
+  if (setupUserName.checkValidity() === true) {
+    closePopup();
+  }
+});
+
+setupSubmit.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === KEYCODS.enter) {
+    closePopup();
+  }
+});
+
+function getWizardElementRandomColor(elem, arr) {
+  elem.style.fill = getRandomElement(arr);
+}
+
+
+function getRandomFireballColor() {
+  fireball.style.background = getRandomElement(FIREBALL_COLORS);
+}
+
+
+wizardCoat.addEventListener('click', function () {
+  getWizardElementRandomColor(wizardCoat, COAT_COLORS);
+});
+
+wizardEyes.addEventListener('click', function () {
+  getWizardElementRandomColor(wizardEyes, EYES_COLORS);
+});
+
+fireball.addEventListener('click', function () {
+  getRandomFireballColor();
+});
+
+
 /**
  *Отрисовывает похожих персонажей во временном блоке DocumentFragment
  */
@@ -143,4 +239,4 @@ similarListElement.appendChild(renderWizards());
 /**
  * Показывает блок похожих персонажей
  */
-userDialog.querySelector('.setup-similar').classList.remove('hidden');
+setup.querySelector('.setup-similar').classList.remove('hidden');
