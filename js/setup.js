@@ -192,7 +192,9 @@ setupClose.addEventListener('keydown', function (evt) {
 });
 
 setupSubmit.addEventListener('click', function () {
-  closePopup();
+  if (setupUserName.checkValidity() === true) {
+    closePopup();
+  }
 });
 
 setupSubmit.addEventListener('keydown', function (evt) {
@@ -201,17 +203,26 @@ setupSubmit.addEventListener('keydown', function (evt) {
   }
 });
 
+function getWizardElementRandomColor(elem, arr) {
+  elem.style.fill = getRandomElement(arr);
+}
+
+
+function getRandomFireballColor() {
+  fireball.style.background = getRandomElement(FIREBALL_COLORS);
+}
+
 
 wizardCoat.addEventListener('click', function () {
-  wizardCoat.style.fill = getRandomElement(COAT_COLORS);
+  getWizardElementRandomColor(wizardCoat, COAT_COLORS);
 });
 
 wizardEyes.addEventListener('click', function () {
-  wizardEyes.style.fill = getRandomElement(EYES_COLORS);
+  getWizardElementRandomColor(wizardEyes, EYES_COLORS);
 });
 
 fireball.addEventListener('click', function () {
-  fireball.style.background = getRandomElement(FIREBALL_COLORS);
+  getRandomFireballColor();
 });
 
 
