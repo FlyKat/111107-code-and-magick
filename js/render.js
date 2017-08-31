@@ -42,26 +42,26 @@
   }
 
   function getWizardElementRandomColor(elem, arr) {
-  elem.style.fill = window.util.getRandomElement(arr);
-}
+    elem.style.fill = window.util.getRandomElement(arr);
+  }
 
 
-function getRandomFireballColor() {
-  fireball.style.background = window.util.getRandomElement(WIZARD_PARAMS.fireballColors);
-}
+  function getRandomFireballColor() {
+    fireball.style.background = window.util.getRandomElement(WIZARD_PARAMS.fireballColors);
+  }
 
 
-wizardCoat.addEventListener('click', function () {
-  getWizardElementRandomColor(wizardCoat, WIZARD_PARAMS.coatColors);
-});
+  wizardCoat.addEventListener('click', function () {
+    getWizardElementRandomColor(wizardCoat, WIZARD_PARAMS.coatColors);
+  });
 
-wizardEyes.addEventListener('click', function () {
-  getWizardElementRandomColor(wizardEyes, WIZARD_PARAMS.eyesColors);
-});
+  wizardEyes.addEventListener('click', function () {
+    getWizardElementRandomColor(wizardEyes, WIZARD_PARAMS.eyesColors);
+  });
 
-fireball.addEventListener('click', function () {
-  getRandomFireballColor();
-});
+  fireball.addEventListener('click', function () {
+    getRandomFireballColor();
+  });
 
   /**
    *Отрисовывает похожих персонажей во временном блоке DocumentFragment
@@ -75,5 +75,5 @@ fireball.addEventListener('click', function () {
 
   window.render = {
     setup: setup,
-  }
+  };
 })();

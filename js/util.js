@@ -50,7 +50,7 @@
     getMaxNumber: function (arr) {
       return Math.max.apply(null, arr);
     },
-   /**
+    /**
     * Возвращает случайное число в заданном диапазоне (не включая max)
     * @param  {[number]} min
     * @param  {[number]} max
