@@ -13,8 +13,8 @@
 
   /**
    * Создаёт DOM-элемент на основе JS-объекта wizard
-   * @param  {[object]} wizard
-   * @return {[type]} DOM-элемент (Node)
+   * @param  {object} wizard
+   * @return {type} DOM-элемент (Node)
    */
   function renderWizard(wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
@@ -28,7 +28,7 @@
 
   /**
    * Заполняет блок DOM-элементами на основе массива JS-объектов
-   * @return {[type]} DocumentFragment
+   * @return {type} DocumentFragment
    */
   function renderWizards() {
     var fragment = document.createDocumentFragment();
@@ -72,8 +72,4 @@
    * Отрисовывает похожих персонажей (заполняет блок similarListElement DOM-элементами из DocumentFragment)
    */
   similarListElement.appendChild(renderWizards());
-
-  window.render = {
-    setup: setup,
-  };
 })();

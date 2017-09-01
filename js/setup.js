@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  var setup = window.render.setup;
+  var setup = document.querySelector('.setup');
   var setupOpen = document.querySelector('.setup-open');
   var setupClose = setup.querySelector('.setup-close');
   var setupSubmit = setup.querySelector('.setup-submit');

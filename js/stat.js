@@ -8,12 +8,12 @@
 
   /**
    * Рисует облако
-   * @param  {[canvas.getContext]} ctx  '2d'
-   * @param  {[number]} x    Начальная координата x
-   * @param  {[number]} y    Начальная координата y
-   * @param  {[number]} width
-   * @param  {[number]} height
-   * @param  {[string]} color
+   * @param  {canvas.getContext} ctx  '2d'
+   * @param  {number} x    Начальная координата x
+   * @param  {number} y    Начальная координата y
+   * @param  {number} width
+   * @param  {number} height
+   * @param  {string} color
    */
   function drawCloud(ctx, x, y, width, height, color) {
     ctx.fillStyle = color;
@@ -25,13 +25,13 @@
   }
 
   /**
-   * [typeMessage description]
-   * @param  {[canvas.getContext]} ctx  '2d'
-   * @param  {[string]} font
-   * @param  {[string]} color
-   * @param  {[string]} text
-   * @param  {[number]} x    Начальная координата x
-   * @param  {[number]} y       Начальная координата y
+   * Выводит сообщение
+   * @param  {canvas.getContext} ctx  '2d'
+   * @param  {string} font
+   * @param  {string} color
+   * @param  {string} text
+   * @param  {number} x    Начальная координата x
+   * @param  {number} y       Начальная координата y
    */
   function typeMessage(ctx, font, color, text, x, y) {
     ctx.fillStyle = color;
@@ -41,7 +41,7 @@
 
   /**
    * Возвращает случайный оттенок синего цвета
-   * @return {[string]}
+   * @return {string}
    */
   function getRandomColorBlue() {
     return 'rgba(0, 0, 255, ' + (window.util.getRandomNumber(0, 1) + 0.1).toFixed(1) + ')';
@@ -49,9 +49,9 @@
 
   /**
    * Рисует гистограмму
-   * @param  {[type]} ctx   [description]
-   * @param  {[array]} names  - Массив имен игроков
-   * @param  {[array]} times  - Массив времени прохождения игры игроками
+   * @param  {type} ctx   [description]
+   * @param  {array} names  - Массив имен игроков
+   * @param  {array} times  - Массив времени прохождения игры игроками
    */
   function drawHistogram(ctx, names, times) {
     var max = window.util.getMaxNumber(times);
@@ -75,9 +75,9 @@
 
   /**
    * Отображает канвас
-   *  @param  {[canvas.getContext]} ctx  '2d'
-   * @param  {[array]} names  - Массив имен игроков
-   * @param  {[array]} times  - Массив времени прохождения игры игроками
+   *  @param  {canvas.getContext} ctx  '2d'
+   * @param  {array} names  - Массив имен игроков
+   * @param  {array} times  - Массив времени прохождения игры игроками
    */
   window.renderStatistics = function (ctx, names, times) {
     drawCloud(ctx, 110, 20, 420, 270, 'rgba(0, 0, 0, 0.7)');
@@ -87,4 +87,3 @@
     drawHistogram(ctx, names, times);
   };
 })();
-
