@@ -82,16 +82,16 @@
 
       setup.style.top = (setup.offsetTop - shift.y) + 'px';
       setup.style.left = (setup.offsetLeft - shift.x) + 'px';
-    };
+    }
 
     function MouseUpHandler(upEvt) {
       upEvt.preventDefault();
 
       document.removeEventListener('mousemove', MouseMoveHandler);
-      document.removeEventListener('mouseup', MouseUpHadler);
-   }
+      document.removeEventListener('mouseup', MouseUpHandler);
+    }
 
     document.addEventListener('mousemove', MouseMoveHandler);
-    document.addEventListener('mouseup', MouseUpHadler);
+    document.addEventListener('mouseup', MouseUpHandler);
   });
 })();
