@@ -6,6 +6,7 @@
   var setupClose = setup.querySelector('.setup-close');
   var setupSubmit = setup.querySelector('.setup-submit');
   var setupUserName = setup.querySelector('.setup-user-name');
+  var setupAvatar = setup.querySelector('input[name="avatar"]');
 
   function popupEscPressHandler(evt) {
     window.util.isEscEvent(evt, function () {
@@ -18,6 +19,8 @@
   function openPopup() {
     setup.classList.remove('hidden');
     document.addEventListener('keydown', popupEscPressHandler);
+    setup.style.top = '100px';
+    setup.style.left = '50%';
   }
 
   function closePopup() {
@@ -57,7 +60,7 @@
    */
   setup.querySelector('.setup-similar').classList.remove('hidden');
 
-  var dialogHandle = setup.querySelector('.setup-user-pic');
+  var dialogHandle = setup.querySelector('.upload');
 
   dialogHandle.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
@@ -69,6 +72,7 @@
 
     function MouseMoveHandler(moveEvt) {
       moveEvt.preventDefault();
+      setupAvatar.classList.add('hidden');
 
       var shift = {
         x: startCoords.x - moveEvt.clientX,
@@ -86,6 +90,8 @@
 
     function MouseUpHandler(upEvt) {
       upEvt.preventDefault();
+      setupAvatar.classList.remove('hidden');
+
 
       document.removeEventListener('mousemove', MouseMoveHandler);
       document.removeEventListener('mouseup', MouseUpHandler);
