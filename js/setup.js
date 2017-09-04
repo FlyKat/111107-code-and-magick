@@ -44,27 +44,19 @@
     return fragment;
   }
 
-  function getWizardElementRandomColor(elem, arr) {
-    elem.style.fill = window.util.getRandomElement(arr);
+  function fillElement(elem, color) {
+    elem.style.fill = color;
   }
 
-
-  function getRandomFireballColor() {
-    fireball.style.background = window.util.getRandomElement(WIZARD_PARAMS.fireballColors);
+  function changeElementBackground(elem, color) {
+    elem.style.backgroundColor = color;
   }
 
+  window.colorizeElement(wizardCoat, WIZARD_PARAMS.coatColors, fillElement);
 
-  wizardCoat.addEventListener('click', function () {
-    getWizardElementRandomColor(wizardCoat, WIZARD_PARAMS.coatColors);
-  });
+  window.colorizeElement(wizardEyes, WIZARD_PARAMS.eyesColors, fillElement);
 
-  wizardEyes.addEventListener('click', function () {
-    getWizardElementRandomColor(wizardEyes, WIZARD_PARAMS.eyesColors);
-  });
-
-  fireball.addEventListener('click', function () {
-    getRandomFireballColor();
-  });
+  window.colorizeElement(fireball, WIZARD_PARAMS.fireballColors, changeElementBackground);
 
   /**
    *Отрисовывает похожих персонажей во временном блоке DocumentFragment
