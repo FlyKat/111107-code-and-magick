@@ -52,7 +52,7 @@
 
   /**
    * Возвращает массив персонажей со случайными уникальными характеристиками
-   * @return {[array]} wizards
+   * @return {array} wizards
    */
   function getWizards() {
     var wizards = [];
