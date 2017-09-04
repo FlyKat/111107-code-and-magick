@@ -2,11 +2,9 @@
 
 (function () {
 
-  function colorizeElement(elem, arr, colorChangeHandler) {
-    elem.addEventListener('click', function () {
-      var color = window.util.getRandomElement(arr);
-      colorChangeHandler(elem, color);
-    });
+  function colorizeElement(elem, arr, changeColor) {
+    var color = window.util.getRandomElement(arr);
+    changeColor(elem, color);
   }
 
   window.colorizeElement = colorizeElement;
