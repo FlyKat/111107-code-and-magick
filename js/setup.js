@@ -52,11 +52,17 @@
     elem.style.backgroundColor = color;
   }
 
-  window.colorizeElement(wizardCoat, WIZARD_PARAMS.coatColors, fillElement);
+  function coatColorChangeHandler() {
+    window.colorizeElement(wizardCoat, WIZARD_PARAMS.coatColors, fillElement);
+  }
 
-  window.colorizeElement(wizardEyes, WIZARD_PARAMS.eyesColors, fillElement);
+  function eyesColorChangeHandler() {
+    window.colorizeElement(wizardEyes, WIZARD_PARAMS.eyesColors, fillElement);
+  }
 
-  window.colorizeElement(fireball, WIZARD_PARAMS.fireballColors, changeElementBackground);
+  function fireballColorChangeHandler() {
+    window.colorizeElement(fireball, WIZARD_PARAMS.fireballColors, changeElementBackground);
+  }
 
   /**
    *Отрисовывает похожих персонажей во временном блоке DocumentFragment
@@ -101,6 +107,10 @@
     artifactsBag.style.outline = 'none';
     evt.preventDefault();
   }
+
+  wizardCoat.addEventListener('click', coatColorChangeHandler);
+  wizardEyes.addEventListener('click', eyesColorChangeHandler);
+  fireball.addEventListener('click', fireballColorChangeHandler);
 
   artifactsShop.addEventListener('dragstart', dragstartHandler);
   artifactsBag.addEventListener('dragover', dragovertHandler);
