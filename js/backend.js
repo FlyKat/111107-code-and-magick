@@ -8,10 +8,12 @@
     xhr.responseType = 'json';
 
     xhr.addEventListener('load', function () {
-      if (xhr.status === 200) {
-        onLoad(xhr.response);
-      } else {
-        onError('Неизвестный статус: ' + xhr.status + ' ' + xhr.statusText);
+      switch (xhr.status) {
+        case 200:
+          onLoad(xhr.response);
+          break;
+        default:
+          onError('Неизвестный статус: ' + xhr.status + ' ' + xhr.statusText);
       }
     });
 

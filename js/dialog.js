@@ -7,6 +7,7 @@
   var setupForm = setup.querySelector('.setup-wizard-form');
   var setupUserName = setup.querySelector('.setup-user-name');
   var setupAvatar = setup.querySelector('input[name="avatar"]');
+  var dialogHandle = setup.querySelector('.upload');
 
   function popupEscPressHandler(evt) {
     window.util.isEscEvent(evt, function () {
@@ -28,18 +29,14 @@
     document.removeEventListener('keydown', popupEscPressHandler);
   }
 
-  setupOpen.addEventListener('click', function () {
-    openPopup();
-  });
+  setupOpen.addEventListener('click', openPopup);
 
   setupOpen.addEventListener('keydown', function (evt) {
     window.util.isEnterEvent(evt, openPopup);
   });
 
 
-  setupClose.addEventListener('click', function () {
-    closePopup();
-  });
+  setupClose.addEventListener('click', closePopup);
 
   setupClose.addEventListener('keydown', function (evt) {
     window. util.isEnterEvent(evt, closePopup);
@@ -51,13 +48,6 @@
       closePopup();
     });
   });
-
-  /**
-   * Показывает блок похожих персонажей
-   */
-  // setup.querySelector('.setup-similar').classList.remove('hidden');
-
-  var dialogHandle = setup.querySelector('.upload');
 
   dialogHandle.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
