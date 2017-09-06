@@ -3,26 +3,28 @@
 (function () {
   var SERVER_URL = 'https://1510.dump.academy/code-and-magick';
 
-  function setup(onLoad, onError) {
+  function setup(loadHandler, errorHandler) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
     xhr.addEventListener('load', function () {
-      switch (xhr.status) {
+      switch(xhr.status) {
         case 200:
-          onLoad(xhr.response);
+          loadHandler(xhr.response);
           break;
+        case 404:
+          errorHandler('Cтатус: ' + xhr.status + ' ' + xhr.statusText);
         default:
-          onError('Неизвестный статус: ' + xhr.status + ' ' + xhr.statusText);
+          errorHandler('Неизвестный статус: ' + xhr.status + ' ' + xhr.statusText);
       }
     });
 
     xhr.addEventListener('error', function () {
-      onError('Произошла ошибка соединения');
+      errorHandler('Произошла ошибка соединения');
     });
 
     xhr.addEventListener('timeout', function () {
-      onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
+      errorHandler('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
     });
 
     xhr.timeout = 10000;
@@ -31,15 +33,15 @@
   }
 
 
-  function save(data, onLoad, onError) {
-    var xhr = setup(onLoad, onError);
+  function save(data, loadHandler, errorHandler) {
+    var xhr = setup(loadHandlerd, errorHandler);
 
     xhr.open('POST', SERVER_URL);
     xhr.send(data);
   }
 
-  function load(onLoad, onError) {
-    var xhr = setup(onLoad, onError);
+  function load(loadHandler, errorHandler) {
+    var xhr = setup(loadHandler, errorHandler);
 
     xhr.open('GET', SERVER_URL + '/data');
     xhr.send();
