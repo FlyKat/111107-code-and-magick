@@ -12,8 +12,6 @@
         case 200:
           loadHandler(xhr.response);
           break;
-        case 404:
-          errorHandler('Cтатус: ' + xhr.status + ' ' + xhr.statusText);
         default:
           errorHandler('Неизвестный статус: ' + xhr.status + ' ' + xhr.statusText);
       }
