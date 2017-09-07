@@ -8,7 +8,7 @@
     xhr.responseType = 'json';
 
     xhr.addEventListener('load', function () {
-      switch(xhr.status) {
+      switch (xhr.status) {
         case 200:
           loadHandler(xhr.response);
           break;
@@ -32,7 +32,7 @@
 
 
   function save(data, loadHandler, errorHandler) {
-    var xhr = setup(loadHandlerd, errorHandler);
+    var xhr = setup(loadHandler, errorHandler);
 
     xhr.open('POST', SERVER_URL);
     xhr.send(data);

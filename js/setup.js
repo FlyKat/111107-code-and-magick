@@ -31,9 +31,9 @@
 
   function renderWizards(wizards) {
     var fragment = document.createDocumentFragment();
-    var count = 4;
+    var wizardsCount = 4;
 
-    for (var i = 0; i < count; i++) {
+    for (var i = 0; i < wizardsCount; i++) {
       fragment.appendChild(renderWizard(wizards[i]));
     }
 
