@@ -41,7 +41,7 @@
   }
 
   function loadHandler(wizards) {
-    renderWizards(wizards);
+    renderWizards(window.util.shuffle(wizards));
     similarList.classList.remove('hidden');
   }
 
