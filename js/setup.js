@@ -2,6 +2,7 @@
 
 (function () {
   var setup = document.querySelector('.setup');
+  var similarList = document.querySelector('.setup-similar');
   var similarListElement = setup.querySelector('.setup-similar-list');
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
   var wizardSetup = setup.querySelector('.setup-wizard');
@@ -9,7 +10,6 @@
   var wizardEyes = wizardSetup.querySelector('.wizard-eyes');
   var fireball = setup.querySelector('.setup-fireball-wrap');
   var WIZARD_PARAMS = window.data.WIZARD_PARAMS;
-  var wizards = window.data.wizards;
   var artifactsShop = setup.querySelector('.setup-artifacts-shop');
   var artifactsBag = setup.querySelector('.setup-artifacts');
   var draggedItem = null;
@@ -23,26 +23,45 @@
     var wizardElement = similarWizardTemplate.cloneNode(true);
 
     wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-    wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+    wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
+    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.colorEyes;
 
     return wizardElement;
   }
 
-  /**
-   * Заполняет блок DOM-элементами на основе массива JS-объектов
-   * @return {type} DocumentFragment
-   */
-  function renderWizards() {
+  function renderWizards(wizards) {
     var fragment = document.createDocumentFragment();
-    var count = wizards.length;
+    var wizardsCount = 4;
 
-    for (var i = 0; i < count; i++) {
+    for (var i = 0; i < wizardsCount; i++) {
       fragment.appendChild(renderWizard(wizards[i]));
     }
 
-    return fragment;
+    similarListElement.appendChild(fragment);
   }
+
+  function loadHandler(wizards) {
+    renderWizards(wizards);
+    similarList.classList.remove('hidden');
+  }
+
+  function errorHandler(errorMessage) {
+    var node = document.createElement('div');
+
+    node.style.zIndex = '100';
+    node.style.margin = '0 auto';
+    node.style.textAlign = 'center';
+    node.style.backgroundColor = 'red';
+    node.style.position = 'absolute';
+    node.style.left = 0;
+    node.style.right = 0;
+    node.style.fontSize = '30px';
+
+    node.textContent = errorMessage;
+    document.body.insertAdjacentElement('afterbegin', node);
+  }
+
+  window.backend.load(loadHandler, errorHandler);
 
   function fillElement(elem, color) {
     elem.style.fill = color;
@@ -63,16 +82,6 @@
   function fireballColorChangeHandler() {
     window.colorizeElement(fireball, WIZARD_PARAMS.fireballColors, changeElementBackground);
   }
-
-  /**
-   *Отрисовывает похожих персонажей во временном блоке DocumentFragment
-   */
-  renderWizards();
-
-  /**
-   * Отрисовывает похожих персонажей (заполняет блок similarListElement DOM-элементами из DocumentFragment)
-   */
-  similarListElement.appendChild(renderWizards());
 
   function dragstartHandler(evt) {
     if (evt.target.tagName.toLowerCase() === 'img') {

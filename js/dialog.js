@@ -4,9 +4,10 @@
   var setup = document.querySelector('.setup');
   var setupOpen = document.querySelector('.setup-open');
   var setupClose = setup.querySelector('.setup-close');
-  var setupSubmit = setup.querySelector('.setup-submit');
+  var setupForm = setup.querySelector('.setup-wizard-form');
   var setupUserName = setup.querySelector('.setup-user-name');
   var setupAvatar = setup.querySelector('input[name="avatar"]');
+  var dialogHandle = setup.querySelector('.upload');
 
   function popupEscPressHandler(evt) {
     window.util.isEscEvent(evt, function () {
@@ -28,39 +29,25 @@
     document.removeEventListener('keydown', popupEscPressHandler);
   }
 
-  setupOpen.addEventListener('click', function () {
-    openPopup();
-  });
+  setupOpen.addEventListener('click', openPopup);
 
   setupOpen.addEventListener('keydown', function (evt) {
     window.util.isEnterEvent(evt, openPopup);
   });
 
 
-  setupClose.addEventListener('click', function () {
-    closePopup();
-  });
+  setupClose.addEventListener('click', closePopup);
 
   setupClose.addEventListener('keydown', function (evt) {
     window. util.isEnterEvent(evt, closePopup);
   });
 
-  setupSubmit.addEventListener('click', function () {
-    if (setupUserName.checkValidity() === true) {
+  setupForm.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    window.backend.save(new FormData(setupForm), function () {
       closePopup();
-    }
+    });
   });
-
-  setupSubmit.addEventListener('keydown', function (evt) {
-    window.util.isEnterEvent(evt, closePopup);
-  });
-
-  /**
-   * Показывает блок похожих персонажей
-   */
-  setup.querySelector('.setup-similar').classList.remove('hidden');
-
-  var dialogHandle = setup.querySelector('.upload');
 
   dialogHandle.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
