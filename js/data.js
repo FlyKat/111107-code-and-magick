@@ -48,7 +48,7 @@
    * Количество персонажей
    * @type {Number}
    */
-  var WIZARDS_COUNT = 4;
+  var WIZARDS_AMOUNT = 4;
 
   /**
    * Возвращает массив персонажей со случайными уникальными характеристиками
@@ -62,7 +62,7 @@
     var coatsColors = window.util.shuffle(WIZARD_PARAMS.coatColors);
     var eyesColors = window.util.shuffle(WIZARD_PARAMS.eyesColors);
 
-    for (var i = 0; i < WIZARDS_COUNT; i++) {
+    for (var i = 0; i < WIZARDS_AMOUNT; i++) {
       wizards[i] = {
         name: wizardsNames[i] + ' ' + wizardsLastNames[i],
         coatColor: coatsColors[i],
