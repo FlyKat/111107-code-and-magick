@@ -51,9 +51,9 @@
   var fireball = setup.querySelector('.setup-fireball-wrap');
 
   var wizard = {
-    coatChangeHandler: function (color) {},
-    eyesChangeHandler: function (color) {}
-  }
+    coatChangeHandler: function () {},
+    eyesChangeHandler: function () {}
+  };
 
   var newColor;
 

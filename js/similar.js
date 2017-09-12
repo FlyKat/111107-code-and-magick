@@ -18,7 +18,7 @@
     return rank;
   }
 
-  var namesComparator = function (left, right) {
+  function namesComparator(left, right) {
     if (left > right) {
       return 1;
     } else if (left < right) {
@@ -28,7 +28,7 @@
     }
   }
 
-  var updateWizards = function () {
+  function updateWizards() {
     window.render(wizards.slice().sort(function (left, right) {
       var rankDiff = getRank(right) - getRank(left);
       if (rankDiff === 0) {
@@ -41,12 +41,12 @@
   window.wizard.eyesChangeHandler = function (color) {
     eyesColor = color;
     window.debounce(updateWizards);
-  }
+  };
 
   window.wizard.coatChangeHandler = function (color) {
     coatColor = color;
     window.debounce(updateWizards);
-  }
+  };
 
   function loadHandler(data) {
     wizards = data;

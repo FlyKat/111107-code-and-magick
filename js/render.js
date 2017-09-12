@@ -1,14 +1,11 @@
 'use strict';
 
 (function () {
+  var WIZARDS_AMOUNT = 4;
   var setup = document.querySelector('.setup');
   var similar = document.querySelector('.setup-similar');
   var similarList = setup.querySelector('.setup-similar-list');
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
-  var wizardSetup = setup.querySelector('.setup-wizard');
-  var wizardCoat = wizardSetup.querySelector('.wizard-coat');
-  var wizardEyes = wizardSetup.querySelector('.wizard-eyes');
-  var WIZARDS_AMOUNT = 4;
 
   /**
    * Создаёт DOM-элемент на основе JS-объекта wizard
@@ -29,7 +26,7 @@
     var fragment = document.createDocumentFragment();
     var dataCount = data.length > WIZARDS_AMOUNT ? WIZARDS_AMOUNT : data.length;
 
-     similarList.innerHTML = '';
+    similarList.innerHTML = '';
 
     for (var i = 0; i < dataCount; i++) {
       fragment.appendChild(renderWizard(data[i]));
